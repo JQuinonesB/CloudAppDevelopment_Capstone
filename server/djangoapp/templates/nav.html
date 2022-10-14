@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+    <nav>
+    {% load static %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Home</a> |
+                <a class="navbar-brand" href="{% url 'djangoapp:about' %}">About</a>|
+                <a class="navbar-brand" href="#">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    {% block nav %}
+    {% endblock nav %}
+</html>

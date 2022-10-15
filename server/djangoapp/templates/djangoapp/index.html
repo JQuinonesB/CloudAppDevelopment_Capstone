@@ -1,23 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Best Cars</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
-</head>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Best Cars</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    </head>
 
-    <body>
-        {% extends 'nav.html' %}
-        {% block nav %}
-        {% endblock nav %}
+
+    <!-- body -->
+    <body class="main-layout">
+
+        <!-- header -->
+        <header>
+        <!-- header inner -->
+            <div class="header" style="background-color:#043a71">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="full">
+                        <div class="center-desk">
+                            <div class="logo">
+                                <a href="{% url 'djangoapp:index' %}">{% load static %}<img src="{% static "djangoapp/media/logo.png" %}" alt="home" /></a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'djangoapp:index' %}"> Home  </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'djangoapp:about' %}">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="furnitures.html">Furnitures</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="testimonial.html">Testimonial</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html">Contact Us</a>
+                                </li>
+                                <li class="nav-item d_none">
+                                    <a class="nav-link" href="#"><i class="fa fa-user-circle padd_right" aria-hidden="true"></i>Login/Register</a>
+                                </li>
+                                <li class="nav-item d_none">
+                                    <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </header>
+        <!-- end header inner -->
+        <!-- end header -->
+
     <!--Add a dealer table here -->
 
+    <!-- end body -->
     </body>
 
 </html>

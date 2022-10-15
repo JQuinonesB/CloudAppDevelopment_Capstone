@@ -13,6 +13,7 @@ urlpatterns = [
     path('about/', views.AboutPageView, name='about'),
 
     # path for contact us view
+    path('contact', views.ContactPageView, name='contact'),
 
     # path for registration
 

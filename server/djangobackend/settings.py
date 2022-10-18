@@ -27,7 +27,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ['JairoBestCars.us-south.cf.appdomain.cloud/static']
+ALLOWED_HOSTS = ['JairoBestCars.us-south.cf.appdomain.cloud', 'localhost', '127.0.0.1']
 
 
 # Application definition

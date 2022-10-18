@@ -1,10 +1,10 @@
   applications:
-  - name: djangoapp
+  - name: BestCars
     routes:
       - route: JairoBestCars.us-south.cf.appdomain.cloud
     memory: 128M
     buildpack: python_buildpack
-  - name: djangoapp-nginx
+  - name: BestCars-nginx
     routes:
       - route: JairoBestCars.us-south.cf.appdomain.cloud/static
     memory: 128M

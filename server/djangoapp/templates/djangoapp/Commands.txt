@@ -1,0 +1,10 @@
+python3 -m pip install -U -r requirements.txt
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
+ibmcloud login --no-region -u email
+ibmcloud account orgs
+ibmcloud target --cf-api https://api.us-south.cf.cloud.ibm.com -r us-south -o jairlanga@gmail.com
+ibmcloud cf install
+ibmcloud account space-create djangoserver-space
+ibmcloud target -s djangoserver-space

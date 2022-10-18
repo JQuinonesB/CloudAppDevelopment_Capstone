@@ -9,3 +9,6 @@ ibmcloud cf install
 ibmcloud account space-create djangoserver-space
 ibmcloud target -s djangoserver-space
 ibmcloud cf push
+
+python3 manage.py createsuperuser
+python3 manage.py runserver

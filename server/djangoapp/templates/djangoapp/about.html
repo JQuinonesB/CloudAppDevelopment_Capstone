@@ -1,8 +1,16 @@
 <!DOCTYPE html>
+<html lang="en"></html>
     <head>
+        {% load static %}
+        <!-- site metas -->
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <title>About</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -17,55 +25,55 @@
 
         <!-- header -->
         <header>
-        <!-- header inner -->
-            <div class="header" style="background-color:#043a71">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                        <div class="full">
-                        <div class="center-desk">
-                            <div class="logo">
-                                <a href="{% url 'djangoapp:index' %}">{% load static %}<img src="{% static "djangoapp/media/logo.png" %}" width="60" height="60" alt="home" /></a>
-                            </div>
+            <!-- header inner -->
+                <nav class="navbar navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a href="{% url 'djangoapp:index' %}"><img src="{% static "djangoapp/media/logo.png" %}" width="60" height="60" alt="home" /></a>
                         </div>
+                        <div class="navbar-header">
+                            <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarsExample04">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'djangoapp:index' %}"> Home  </a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if user.is_authenticated %}
+                            <li>
+                                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                                    <a class="btn btn-link" href="#">Logout</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                    <form class="form-inline" action="#" method="post">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Username" name="username" >
+                                            <input type="password" class="form-control" placeholder="Password" name="psw" >
+                                            <button class="btn btn-primary" type="submit">Login</button>
+                                            <a class="btn btn-link" href="#">Sign Up</a>
+                                    </div>
+                                    </form>
+                            </li>
+                            {% endif %}
+                        </ul>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'djangoapp:index' %}"> Home  </a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="testimonial.html">Testimonial</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact Us</a>
-                                </li>
-                                <li class="nav-item d_none">
-                                    <a class="nav-link" href="#"><i class="fa fa-user-circle padd_right" aria-hidden="true"></i>Login/Register</a>
-                                </li>
-                                <li class="nav-item d_none">
-                                    <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </header>
+                </nav>
+            </header>
         <!-- end header inner -->
         <!-- end header -->
         <!-- about -->

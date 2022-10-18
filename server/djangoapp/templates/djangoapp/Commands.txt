@@ -8,3 +8,4 @@ ibmcloud target --cf-api https://api.us-south.cf.cloud.ibm.com -r us-south -o ja
 ibmcloud cf install
 ibmcloud account space-create djangoserver-space
 ibmcloud target -s djangoserver-space
+ibmcloud cf push

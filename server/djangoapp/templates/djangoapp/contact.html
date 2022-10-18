@@ -29,7 +29,7 @@
                 <nav class="navbar navbar-dark bg-dark">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a href="{% url 'djangoapp:index' %}"><img src="{% static "djangoapp/media/logo.png" %}" width="60" height="60" alt="home" /></a>
+                            <a href="{% url 'djangoapp:index' %}"><img src="{{MEDIA_URL}}/logo.png" width="60" height="60" alt="home" /></a>
                         </div>
                         <div class="navbar-header">
                             <nav class="navigation navbar navbar-expand-md navbar-dark ">
@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="map">
-                            <figure>{% load static %}<img src="{% static "djangoapp/media/map.jpg" %}" alt="#"/></figure>
+                            <figure>{% load static %}<img src="{{MEDIA_URL}}/map.jpg"  alt="#"/></figure>
                             </div>
                             <form class="bottom_form">
                             <h3>Newsletter</h3>

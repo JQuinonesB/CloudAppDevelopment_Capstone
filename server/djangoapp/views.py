@@ -94,4 +94,3 @@ def get_dealerships(request):
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
-

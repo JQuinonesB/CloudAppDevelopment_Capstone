@@ -1,3 +1,8 @@
+https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-CD0251EN-SkillsNetwork/labs/m5_django_advanced/lab3_bootstrap.md.html
+https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-CD0251EN-SkillsNetwork/labs/m5_django_advanced/lab2_authentication.md.html
+
+2hdi9uXQ7gfzPMlUbcXKVBYpV7sO1u7QKSi41BLHozqs
+
 python3 -m pip install -U -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate

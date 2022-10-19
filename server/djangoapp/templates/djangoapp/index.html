@@ -8,7 +8,7 @@
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Best Cars</title>
+        <title>Contact</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -54,19 +54,19 @@
                         {% if user.is_authenticated %}
                         <li>
                                 <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
-                                <a class="btn btn-link" href="{% url 'djangoapp:index' %}">Logout</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
                         </li>
                         {% else %}
                         <li>
-                                <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                            <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                                 {% csrf_token %}
                                 <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Username" name="username" >
                                         <input type="password" class="form-control" placeholder="Password" name="psw" >
                                         <button class="btn btn-primary" type="submit">Login</button>
-                                        <a class="btn btn-link" href="{% url 'djangoapp:login' %}">Sign Up</a>
+                                        <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                                 </div>
-                                </form>
+                            </form>
                         </li>
                         {% endif %}
                     </ul>

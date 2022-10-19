@@ -13,14 +13,16 @@ urlpatterns = [
     path('about/', views.AboutPageView, name='about'),
 
     # path for contact us view
-    path('contact', views.ContactPageView, name='contact'),
+    path('contact/', views.ContactPageView, name='contact'),
 
     # path for registration
+    path('registration/', views.registration_request, name='registration'),
 
     # path for login
-    path('login', views.login_request, name='login'),
+    path('login/', views.login_request, name='login'),
 
     # path for logout
+    path('logout/', views.logout_request, name='logout'),
 
     # path for index
     path(route='', view=views.get_dealerships, name='index'),

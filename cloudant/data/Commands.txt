@@ -12,3 +12,5 @@
 export IAM_API_KEY="apikey"
 export COUCH_URL="https://dd861025-429b-4710-b356-73157a090dbc-bluemix.cloudantnosqldb.appdomain.cloud"
 
+https://us-south.functions.appdomain.cloud/api/v1/web/jairlanga%40gmail.com_Django_space/dealership-package/get-dealership
+

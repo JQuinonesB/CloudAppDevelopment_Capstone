@@ -1,5 +1,5 @@
 {
-  "apikey": "9-L-T-F-n-B-H-C-A-9-E-K-8-Y-p-d-v-j-G-r-a-F-P-0-g-t-X-9-3-6-6-p-r-W-j-k-x-M-0-7-z-o-f",
+  "apikey": "apikey",
   "host": "dd861025-429b-4710-b356-73157a090dbc-bluemix.cloudantnosqldb.appdomain.cloud",
   "iam_apikey_description": "Auto-generated for key crn:v1:bluemix:public:cloudantnosqldb:us-south:a/4b153b603b3c4554a9978e7cd824be5a:b685e853-ad00-4b4a-bdb7-0e9169732164:resource-key:3e79ffb8-9e3e-4c55-8cf8-014b19442ae3",
   "iam_apikey_name": "BestCars-Cred",

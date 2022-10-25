@@ -17,7 +17,7 @@ def main(dict):
     service.set_service_url("https://dd861025-429b-4710-b356-73157a090dbc-bluemix.cloudantnosqldb.appdomain.cloud")
     response = service.post_find(
                 db='reviews',
-                selector={'dealership': {'$eq': int(dict['id'])}},
+                selector={'dealership': {'$eq': int(dict['dealerID'])}},
             ).get_result()
     try:
         # result_by_filter=my_database.get_query_result(selector,raw_result=True)

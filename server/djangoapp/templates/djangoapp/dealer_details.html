@@ -2,16 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dealership Review</title>
     {% load static %}
+    <title>Dealership Review</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
 </head>
 
     <body>
-
     <!--Add a nav bar here -->
-
+    <body class="main-layout">
+        <!-- header -->
+        <header>
+        <!-- header inner -->
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="{% url 'djangoapp:index' %}"><img src="{{MEDIA_URL}}/logo.png" width="60" height="60" alt="home" /></a>
+                    </div>
+                    <div class="navbar-header">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarsExample04">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{% url 'djangoapp:index' %}"> Home  </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                        <li>
+                                <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Username" name="username" >
+                                        <input type="password" class="form-control" placeholder="Password" name="psw" >
+                                        <button class="btn btn-primary" type="submit">Login</button>
+                                        <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                                </div>
+                            </form>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- end header inner -->
+        <!-- end header -->
     <!-- Add reviews as cards -->
+    <div class="container mx-auto my-2 ">
+
+        <h1 class="my-3"><small>Reviews for dealer #{{ dealer}} <br></small>
+            {% for dealerdetails in dealerships %}
+                {% if dealerdetails.id == dealer %}
+                    {{dealerdetails.full_name}}
+                {% endif %}
+            {% endfor %}
+        </h1>
+        <div class="card-columns">
+            {% for review in dealer_reviews %}
+            <div class="card">
+                <img class="card-img-left m-2" width="30" height="30" src="{{MEDIA_URL}}/emoji/{{ review.sentiment }}.png">
+
+                <div class="card-body">
+                    <h4 class="card-title">
+                       Bought Car: {{ review.car_model }}, {{ review.car_make }}
+                    </h4>
+                    <h4 class="text">
+                       Model Year:  {{ review.car_year }}
+                    </h4>
+                    <div class="card-text">
+                        <p>Review: {{ review.review }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty  %}
+            <div class="card">
+                <div class = "card-body">
+                    <div class = "text">
+                        No reviews available yet.<br>
+                        Please leave a review with <a href="{% url 'djangoapp:add_review' dealer %}">this form</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
     </body>
 

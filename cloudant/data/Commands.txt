@@ -12,5 +12,18 @@
 export IAM_API_KEY="apikey"
 export COUCH_URL="https://dd861025-429b-4710-b356-73157a090dbc-bluemix.cloudantnosqldb.appdomain.cloud"
 
-https://us-south.functions.appdomain.cloud/api/v1/web/jairlanga%40gmail.com_Django_space/dealership-package/get-dealership
+https://us-south.functions.appdomain.cloud/api/v1/web/JQuinonesB_Django_space/dealership-package/get-dealership
+wget https://us-south.functions.appdomain.cloud/api/v1/web/JQuinonesB_Django_space/dealership-package/get-dealership
+curl --request GET --url 'https://us-south.functions.appdomain.cloud/api/v1/web/JQuinonesB_Django_space/dealership-package/get-dealership' --header 'accept: application/json' --header 'authorization: <IAM_token>'
 
+curl -X "POST" "https://iam.cloud.ibm.com/identity/token" \
+     -H 'Accept: application/json' \
+     -H 'Content-Type: application/x-www-form-urlencoded' \
+     --data-urlencode "apikey=<api>" \
+     --data-urlencode "response_type=cloud_iam" \
+     --data-urlencode "grant_type=urn:ibm:params:oauth:grant-type:apikey"
+
+https://python-cloudant.readthedocs.io/en/stable/getting_started.html#opening-a-database
+https://github.com/IBM/serverless-functions-python/blob/master/actions/readAll.py
+
+https://discussions.edx.org/course-v1:IBM+CAD0321EN+1T2021/posts/62e57150bfd4da048a2334d6

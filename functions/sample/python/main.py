@@ -13,8 +13,6 @@ import requests
 
 
 def main(dict):
-    databaseName = "dealerships"
-
     try:
         client = Cloudant.iam(
             account_name=dict["dd861025-429b-4710-b356-73157a090dbc-bluemix"],
@@ -30,3 +28,7 @@ def main(dict):
         return {"error": err}
 
     return {"dbs": client.all_dbs()}
+
+D = {"dd861025-429b-4710-b356-73157a090dbc-bluemix":"dd861025-429b-4710-b356-73157a090dbc-bluemix",
+    "9-LTFnBHCA9EK8YpdvjGraFP0gtX9366prWjkxM07zof":"9-LTFnBHCA9EK8YpdvjGraFP0gtX9366prWjkxM07zof"}
+main(D)

@@ -31,7 +31,7 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarsExample04">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{% url 'djangoapp:index' %}"> Home  </a>
                                     </li>
                                     <li class="nav-item">
@@ -80,7 +80,7 @@
             {% endfor %}
         </h1>
         <div class="card-columns">
-            {% for review in dealer_reviews %}
+            {% for review in reviews %}
             <div class="card">
                 <img class="card-img-left m-2" width="30" height="30" src="{{MEDIA_URL}}/emoji/{{ review.sentiment }}.png">
 
@@ -101,11 +101,24 @@
                 <div class = "card-body">
                     <div class = "text">
                         No reviews available yet.<br>
+                        {% if user.is_authenticated %}
                         Please leave a review with <a href="{% url 'djangoapp:add_review' dealer %}">this form</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             {% endfor %}
+            {% if reviews %}
+                {% if user.is_authenticated %}
+                <div class="card">
+                    <div class = "card-body">
+                        <div class = "text">
+                            Please leave a review with <a href="{% url 'djangoapp:add_review' dealer %}">this form</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% endif %}
         </div>
     </div>
 

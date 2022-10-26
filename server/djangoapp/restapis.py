@@ -1,14 +1,16 @@
 import requests
 import json
 # import related models here
-from .models import CarDealer
+from .models import CarDealer, DealerReview
+from ibm_watson import NaturalLanguageUnderstandingV1
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions
 
 from requests.auth import HTTPBasicAuth
 
 
 # Create a `get_request` to make HTTP GET requests
 def get_request(url, **kwargs):
-    print(kwargs)
     print("GET from {} ".format(url))
     try:
         # Call get method of requests library with URL and parameters
@@ -24,7 +26,18 @@ def get_request(url, **kwargs):
 
 
 # Create a `post_request` to make HTTP POST requests
-# e.g., response = requests.post(url, params=kwargs, json=payload)
+def post_request(url, json_payload, **kwargs):
+    print("Post to {} ".format(url))
+    print(json_payload)
+    try:
+        response = requests.post(url, json=json_payload)
+        status_code = response.status_code
+        print("With status {} ".format(status_code))
+        json_data = json.loads(response.text)
+        return json_data
+    except:
+        print("Network exception occurred")
+        return "error in sentiment analyze"
 
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
@@ -48,17 +61,63 @@ def get_dealers_from_cf(url, **kwargs):
 
     return results
 
+# get_dealer_by_id_from_cf method
+def get_dealer_by_id_from_cf(url, id):
+    json_result = get_request(url, id=id)
+
+    if json_result:
+        dealers = json_result
+
+        dealer_doc = dealers[0]
+        dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"],
+                                id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"], full_name=dealer_doc["full_name"],
+                                st=dealer_doc["st"], zip=dealer_doc["zip"], short_name=dealer_doc["short_name"])
+    return dealer_obj
+
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-# def get_dealer_by_id_from_cf(url, dealerId):
-# - Call get_request() with specified arguments
-# - Parse JSON results into a DealerView object list
+def get_dealer_reviews_from_cf(url, dealer_id):
+    results = []
+    if dealer_id:
+        json_result = get_request(url, dealership=dealer_id)
+    else:
+        json_result = get_request(url)
+
+    if json_result:
+        # Get the row list in JSON as dealers
+        reviews = json_result["data"]["docs"]
+        # For each dealer object
+        for review in reviews:
+            # Get its content in `doc` object
+            review_doc = review
+            # Create a CarDealer object with values in `doc` object
+            review_obj = DealerReview(dealership=review_doc["dealership"], name=review_doc["name"], purchase=review_doc["purchase"],
+                                   id=review_doc["id"], review=review_doc["review"], purchase_date=review_doc["purchase_date"],
+                                   car_make=review_doc["car_make"],
+                                   car_model=review_doc["car_model"], car_year=review_doc["car_year"], sentiment="neutral")
+            review_obj.sentiment = analyze_review_sentiments(review_obj.review)
+            results.append(review_obj)
+
+    return results
+
 
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 # def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments
 # - Get the returned sentiment label such as Positive or Negative
+def analyze_review_sentiments(review):
+    authenticator = IAMAuthenticator('0rjY0A_V9_kOF4anvAfWV5IMShRG9OnRHgWYhbC1OTdt')
+    nlu = NaturalLanguageUnderstandingV1(
+        version='2022-04-07',
+        authenticator=authenticator
+        )
+    nlu.set_service_url('https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/5eea8358-3dba-4df6-a637-337eb38a224d')
+
+    response = nlu.analyze(text = review,
+    features=Features(sentiment=SentimentOptions(document = True))).get_result()
+
+    return response['sentiment']['document']['label']
 
 
 

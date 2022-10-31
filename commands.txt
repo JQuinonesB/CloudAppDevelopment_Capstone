@@ -10,3 +10,10 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 sudo chown root: /usr/local/bin/kubectl
 
 kubectl version --client
+
+chmod +x ./entrypoint.sh
+
+
+Docker build -t dealerships .
+
+ibmcloud cr image-rm us.icr.io/jquinonesb/dealership:latest && docker rmi us.icr.io/jquinonesb/dealership:latest

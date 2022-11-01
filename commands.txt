@@ -16,4 +16,12 @@ chmod +x ./entrypoint.sh
 
 Docker build -t dealerships .
 
-ibmcloud cr image-rm us.icr.io/jquinonesb/dealership:latest && docker rmi us.icr.io/jquinonesb/dealership:latest
+ibmcloud cr image-rm us.icr.io/jquinonesb/dealership:latest && docker rmi us.icr.io/jquinonesb/dealership:latest -f
+
+bx cr login
+
+export MY_NAMESPACE=jquinonesb
+
+minikube start
+
+kubectl delete pods dealership-58bd9fdc6b-v8425-f47c4bbbd-9hdct --grace-period=0 --force

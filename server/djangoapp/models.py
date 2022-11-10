@@ -15,7 +15,6 @@ import json
 class CarMake(models.Model):
     maker_name = models.CharField(null=False, max_length=30, default='BMW')
     description = models.CharField(null=False, max_length=500)
-    #dob = models.DateField(null=True)
 
     # Create a toString method for object string representation
     def __str__(self):
